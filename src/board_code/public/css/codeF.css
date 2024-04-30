@@ -1,0 +1,41 @@
+.team {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin: 2px;
+}
+
+.team:hover {
+    background-color: #f0f0f0;
+}
+
+.team-box {
+    padding: 10px;
+    border: 1px solid #ddd;
+    min-height: 100px;
+    width: 200px;
+}
+
+.team-box a {
+    display: block;
+    margin-bottom: 5px;
+}
+.code-list{
+    display: flex;
+    justify-content: center;
+     align-items: center;
+}
+.team-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    width: 300px;
+    height: 500px;
+}
+
+.team-box a {
+    text-align:start; 
+    margin: 5px;
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Status</title>
+
+</head>
+
+<style>
+  * {
+    margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  }
+
+  
+
+  .container {
+    position: relative;
+    width: 1000px;
+    height: 2000px;
+    display: flex;
+    padding: 0;
+  }
+
+  .status {
+    /* position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 20px; */
+  }
+
+  select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  div {}
+
+  #listDiv {
+    display: inline-block;
+    background-color: grey;
+    width: 20%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+  }
+
+  #content {
+    margin: 0;
+    display: inline-block;
+    width: 79%;
+    vertical-align: top;
+  }
+</style>
+
+<body>
+  <% if (session) { %>
+    <div class="container">
+      <div id="listDiv">
+        <nav id="userInfo">
+          <table>
+            <tr>
+              <div class="status">
+                <label for="status">Choose your status:</label>
+                <select id="status" onchange="updateStatus()">
+                  <option value="online">Online</option>
+                  <option value="offline">Offline</option>
+                  <option value="away">Away</option>
+                  <option value="Do Not Disturb">Do Not Disturb</option>
+                </select>
+              </div>
+            </tr>
+            <tr>
+              <td><span>UserName: <%= session.name %>!</span></td>
+            </tr>
+            <tr>
+              <td><span>Team: <%= session.team %></span></td>
+            </tr>
+            <tr>
+              <td><span>Position: <%= session.position %></span></td>
+            </tr>
+            <tr>
+              <td><button id="logout" onclick="location.href=`/logout`">로그아웃</button></td>
+            </tr>
+          </table>
+        </nav>
+        <div>
+          <p>달력</p>
+        </div>
+        <div>
+          <p><a href='/board/list'>게시판</a></p>
+        </div>
+      </div>
+      <div id="content">
+        <h1>컨텐츠</h1>
+      </div>
+
+
+
+    </div>
+
+    <% } else { %>
+      <h2>Login required.</h2>
+
+      <% } %>
+
+
+        <script>
+          function updateStatus() {
+            var status = document.getElementById("status").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/update-status", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                var responseData = JSON.parse(xhr.responseText);
+                alert("current status changed to:" + responseData.data.status);
+
+              }
+            };
+            xhr.send(JSON.stringify({ status: status }));
+
+
+
+            //json
+            // var status = document.getElementById('status').value;
+            // fetch("/update-status/"+status,{method:"get"})
+            //   .then(res=>res.json())
+            //   .then(data=>{
+            //       console.log("data:",data)
+            //       alert(`${data.status} 상태입니다.`)
+            //       // document.getElementById("status").textContent=data;
+            //   })
+
+
+          }
+
+          //  updateStatus();
+
+
+        </script>
+</body>
+
+</html>

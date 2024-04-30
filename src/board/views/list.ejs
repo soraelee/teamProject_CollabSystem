@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Tables</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="../../../static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../static/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="../../../static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<style>
+    #contentTable td{
+        color: #000;
+    }
+    #MainBoardList{
+        min-width: 1000px;
+    }
+</style>
+</head>
+
+<body id="page-top" >
+
+    <!-- Page Wrapper -->
+    <div id="wrapper" style="width: 100%;">
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid" >
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800" >게시판</h1>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4" id="MainBoardList">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">자유게시판</h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="contentTable"class="table-responsive" width="100%">
+                                <table class="table table-bordered" id="dataTable"  cellspacing="0" >
+                                    <thead>
+                                        <tr>
+                                            <th>글 번호</th>
+                                            <th>게시자</th>
+                                            <th>제목</th>
+                                            <th>날짜</th>
+                                            <th>조회수</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <% if( list.length == 0){ %>
+                                            <tr class="tr">
+                                                <th colspan="7">등록된 글이 없습니다</th>
+                                            </tr>
+                                        <%}else{
+                                            list.forEach(data=>{%>
+                                            <tr  class="tr">
+                                                <td class="board_num"><%=data.RN%></td>
+                                                <td class="writer"><%=data.ID%></td>
+                                                <td class="title">
+                                                    <span class="atag" onclick="board_view('<%=data.WRITE_NO%>')"><%=data.TITLE%></span>
+                                                </td>
+                                                <td class="date"><%=data.SAVE_DATE%></td>
+                                                <td class="hit"><%=data.HIT%></td>
+                                            </tr>
+                                            <%})
+                                        }%>
+                                        
+                                
+                                    </tbody>
+
+                                </table>
+                                <button id="writebtn" onclick="board_write_form()">글 작성</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+   
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../static/js/fun.js"></script>
+    
+    
+    <!-- Bootstrap core JavaScript-->
+    <script src="../../../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../../../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../../../static/js/sb-admin-2.min.js"></script>
+   
+    <!-- Page level plugins -->
+    <script src="../../../static/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../../static/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+         $('#dataTable').DataTable({
+      "lengthMenu": [[3, 5, 10, 25, 50, -1], [3, 5, 10, 25, 50, "All"]],
+      "language": {
+        "lengthMenu": 'Display <select>'+
+          '<option value="3">3</option>'+
+          '<option value="5">5</option>'+
+          '<option value="10">10</option>'+
+          '<option value="25">25</option>'+
+          '<option value="50">50</option>'+
+          '<option value="-1">All</option>'+
+          '</select> records'
+      }
+    });
+    </script>
+
+</body>
+
+</html>

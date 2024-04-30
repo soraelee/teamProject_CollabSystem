@@ -1,0 +1,24 @@
+<script src="htthttps://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/src/board/public/js/reply.js"></script>
+
+<div id=" modal_wrap">
+    <div id="first">
+        <form id="frm">
+            <table border="1" align="center">
+                <tr>
+                    <th width="100">TEAM_NAME</th> <td id="number" width="200"><%= modyB[0].TEAM%></td> 
+                    <th width="100">작성자</th>  <td width="200"><%=modyB[0].USER_ID%></td>
+                </tr>
+                <tr>
+                    <th>제목</th> <td colspan="3"><input size="30" type="text" name="title" style="width: 100%;border: none;"></td>
+                <tr>
+                    <th>내용</th><td colspan="3"><textarea style="width: 100%; height:200px; resize: none;"></textarea></td> 
+                </tr>
+            </table>   
+            <div>
+                <button type="button" onclick="">답 글</button>
+                <button type="button" onclick="window.location.href='/board/boardDetail'">취 소</button>
+            </div> 
+        </form>
+    </div>
+</div>        

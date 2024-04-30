@@ -1,0 +1,41 @@
+<div id="write_modal_wrap">
+    <div id="write_first" >
+        <h2 style="color: rgb(90, 153, 212); text-align: center;">일정 등록</h2>
+        <form id="frm">
+            <div style="padding-top: 20px;">
+                <label for="title" style="color: rgb(34, 34, 34);">일정내용:</label><br>
+                <input type="text" id="title" name="title" style="width: 100%;">
+            </div>
+            <div style="padding-top: 10px;">
+                <label for="startDate" style="color: rgb(34, 34, 34);">시작일자:</label><br>
+                <input type="date" id="startDate" name="startDate">
+                <input type="time" id="startTime" name="startTime">
+            </div>
+            <div style="padding-top: 10px;">
+                <label for="endDate" style="color: rgb(34, 34, 34);">종료일자:</label><br>
+                <input type="date" id="endDate" name="endDate">
+                <input type="time" id="endTime" name="endTime">
+            </div>
+            <div style="padding-top: 10px;">
+                <label for="color" style="color: rgb(34, 34, 34);">배경색:</label><br>
+                <select id="color" name="color">
+                    <option value="red">빨강색</option>
+                    <option value="orange">주황색</option>
+                    <option value="yellow">노랑색</option>
+                    <option value="green">초록색</option>
+                    <option value="blue">파랑색</option>
+                    <option value="indigo">남색</option>
+                    <option value="purple">보라색</option>
+                </select>
+            </div>
+            <div style="padding-top: 10px;">
+                <input type="checkbox" id="private" name="private">
+                <label for="private" style="font-size: 12px; color: rgb(70, 70, 70);">개인일정 선택 (팀원에게 공유되지 않습니다.)</label>
+            </div>
+            <div style="padding-top: 20px; text-align: center;">
+                <button type="button" onclick="upload()" id="uploadBtn">올리기</button>
+                <button type="button" onclick="write_hide()">취소</button>
+            </div>
+        </form>
+    </div>
+</div>

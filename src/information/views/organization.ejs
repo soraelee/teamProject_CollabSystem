@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: block;
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 8px;
+        }
+        .team-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .team {
+            width: calc(50% - 10px);
+            color: white;
+            background-color: lightslategray;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .team h2 {
+            color: skyblue;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .team h3 {
+            color: lightgoldenrodyellow;
+            margin-bottom: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .team-dev, .team-client {
+            color: white;
+            list-style-type: none;
+            padding: 0;
+            margin-top: 0;
+        }
+       .team-dev li, .team-client li {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .team h3:not(:first-child) {
+            margin-top: 20px;
+        }
+        .team-dev li:not(:first-child), .team-client li:not(:first-child) {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>    
+    <div class="container">
+        <% console.log("teams", teams) %>
+        <% Object.keys(teams).forEach((team, index) => { %>
+            <% if (index % 2 === 0) { %>
+                <div class="team-group">
+            <% } %>
+            <div class="team">
+                <h2><%= team %></h2>
+                <% if (teams[team].PM) { %>
+                    <h3>PM:</h3>
+                    <%= teams[team].PM.USER_NAME %>
+                <% } %>
+                <% if (teams[team].dev) { %>
+                    <h3>Dev:</h3>
+                    <ul class="team-dev">
+                        <% teams[team].dev.forEach(dev => { %>
+                            <li><%= dev.USER_NAME %></li>
+                        <% }); %>
+                    </ul>
+                <% } %>
+                <% if (teams[team].client) { %>
+                    <h3>Client:</h3>
+                    <ul class="team-client">
+                        <% teams[team].client.forEach(client => { %>
+                            <li><%= client.USER_NAME %></li>
+                        <% }); %>
+                    </ul>
+                <% } %>
+            </div>
+            <% if (index % 2 !== 0 || index === Object.keys(teams).length - 1) { %>
+                </div>
+            <% } %>
+        <% }); %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<div id="modify_modal_wrap" >
+    <div id="modify_first" >
+        <h2 style="color: rgb(90, 153, 212); text-align: center;">일정 수정</h2>
+        <form id="mdf">
+            <input type="text" hidden id="mdfId" name="id">
+            <div style="padding-top: 20px;">
+                <label for="mdftitle" style="color: rgb(34, 34, 34);">일정내용:</label><br>
+                <input type="text" name="title" id="mdftitle" style="width: 100%;">
+            </div>
+            <div style="padding-top: 10px;">
+                <label for="mdfstart" style="color: rgb(34, 34, 34);">시작일자:</label><br>
+                <input type="date" name="startDate" id="mdfstart">
+                <input type="time" name="startTime" id="mdfstartTime">
+            </div>
+            <div style="padding-top: 10px;">
+                <label for="mdfend" style="color: rgb(34, 34, 34);">종료일자:</label><br>
+                <input type="date" name="endDate" id="mdfend">
+                <input type="time" name="endTime" id="mdfendTime">
+            </div>
+            <div style="padding-top: 10px;">
+                <label for="mdfcolor" style="color: rgb(34, 34, 34);">배경색:</label><br>
+                <select name="color" id="mdfcolor">
+                    <option value="red">빨강색</option>
+                    <option value="orange">주황색</option>
+                    <option value="yellow">노랑색</option>
+                    <option value="green">초록색</option>
+                    <option value="blue">파랑색</option>
+                    <option value="indigo">남색</option>
+                    <option value="purple">보라색</option>
+                </select>
+            </div>
+            <div style="padding-top: 10px;">
+                <input type="checkbox" name="private" id="mdfprivate">
+                <label for="mdfprivate" style="font-size: 12px; color: rgb(70, 70, 70);">개인일정 선택 (팀원에게 공유되지 않습니다.)</label>
+            </div>
+            <div style="padding-top: 20px; text-align: center;">
+                <button type="button" id="modifyBtn">수정</button>
+                <button type="button" id="deleteBtn">삭제</button>
+                <button type="button" onclick="modify_hide()">취소</button>
+            </div>
+        </form>
+    </div>
+</div>

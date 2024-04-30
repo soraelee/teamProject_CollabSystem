@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .modify-container {
+            width: 90%;
+            max-width: 600px;
+            min-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            line-height: 1.5;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            /* box-sizing: border-box; */
+        }
+        input:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="modify-container">
+        <form id="mdfForm" >
+            <div>
+                <label for="user_id">User Id:</label>
+                <input type="text" id="user_id" readonly name="id" value="<%= user.USER_ID %>" onclick="showAlert('User id는 수정할 수 없습니다.')">
+            </div>
+            <div>
+                <label for="user_pw">Password:</label>
+                <input type="password" id="user_pw" name="pw" value="<%= user.USER_PW %>" class="password-input">
+            </div>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="<%= user.USER_NAME %>">
+            </div>
+            <div>
+                <label for="position">Position:</label>
+                <input type="text" id="position" readonly name="position" value="<%= user.POSITION %>" onclick="showAlert('position은 수정할 수 없습니다.')">
+            </div>
+            <div>
+                <label for="team">Team:</label>
+                <input type="text" id="team" readonly name="team" value="<%= user.TEAM %>" onclick="showAlert('Team은 수정할 수 없습니다.')">
+            </div>
+            <button type="submit">수정</button>
+        </form>
+        <p><a href="#" onclick="returnToUserInfo()">이전으로 돌아가기</a></p>
+    </div>
+</body>
+</html>

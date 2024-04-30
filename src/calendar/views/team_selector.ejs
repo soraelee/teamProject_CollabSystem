@@ -1,0 +1,25 @@
+<div id="select_modal_wrap">
+    <div id="select_first">
+        <div style="text-align: center;">
+            <div>
+                <h2>Team</h2>
+            </div>
+            <div style="padding-left: 10px; padding-bottom: 10px;">
+                <div style="padding-bottom: 10px;">
+                    <button type="button" id="AllSch" style="width: 150px; height: 50px;">All Schedule</button><br>
+                </div>
+                <% console.log(group) %>
+                <% group.forEach((team) => { %>
+                    <% if(team !== 'None'){%>
+                        <div style="padding: 10px;">
+                            <button type="button" id="<%= team %>" class="teamBtn" style="width: 150px; height: 50px;"><%= team %></button><br>
+                        </div>
+                    <%}%>
+                <% }) %>
+                <div style="padding: 10px;">
+                    <button type="button" onclick="select_hide()">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

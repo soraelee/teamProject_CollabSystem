@@ -1,0 +1,178 @@
+<head>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+        }
+        #form-commentInfo {
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          padding: 20px;
+          margin-bottom: 20px;
+          margin-top: 15px;
+        }
+        #comment-count {
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+        input[type="text"] {
+          width: calc(100% - 80px); /* 입력창과 버튼을 제외한 너비 */
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin-bottom: 10px;
+        }
+        input[type="text"]:focus {
+          outline: none;
+          border-color: #3498db;
+        }
+        input[type="text"]::placeholder {
+          color: #999;
+        }
+        #submit {
+          width: 80px;
+          padding: 10px;
+          border: none;
+          background-color: #3498db;
+          color: #fff;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+        #submit:hover {
+          background-color: #2980b9;
+        }
+        .comment {
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          padding: 15px;
+          margin-bottom: 10px;
+        }
+        .comment p {
+          margin: 0;
+          line-height: 1.5;
+        }
+        .comment-divider {
+          border: none;
+          border-top: 1px solid #ccc;
+          margin: 20px 0;
+        }
+        
+      </style>
+</head>
+
+<body>
+    <div class="wrap" style="width: 600px; margin: 0 auto;border: 1px #0000;">
+      <div>
+        <h1>코드 페이지</h1>
+        글 작성자 : <%= modyB[0].USER_ID %>
+        <div style="margin-top: 7px;text-align: center;">
+            <div style="display: flex; margin-left: 15px;">
+                <input name="USER_ID" value="<%=modyB[0].USER_ID%>" type="text" style="height: 40px; font-size: 15; width: 285px;"readonly>
+                <input name="TEAM" value="<%= modyB[0].TEAM%>" type="text" style="height: 40px; font-size: 15; width: 285px;" readonly>
+            </div>
+
+            <input name="CONTENT" value="<%= modyB[0].CONTENT %>" type="text" style="height: 40px; font-size: 15; width: 95%;"readonly>
+            <input id="articleTitle" name="TITLE" value="<%= modyB[0].TITLE%>" type="text" style="height: 40px; font-size: 15; width: 95%;"readonly>
+            <a href="/board/download/<%= modyB[0].FILE_NAME %>" id="fileIn" download="<%= modyB[0].FILE_NAME %>"><%= modyB[0].FILE_NAME %></a>
+            <textarea id="fileContent" style="width: 95%; height: 400px; resize: none; font-size: 20px;"readonly ></textarea>
+        </div> 
+      </div>
+        <div id="form-commentInfo">
+            <div id="comment-count">댓글 <span id="count"></span></div>
+            <input id="author-input" value="<%=modyB[0].USER_ID%>"><br>
+            <input id="comment-input" placeholder="댓글을 입력해 주세요."style="width: 400px;height: 150px;margin: top 5px;">
+            <button id="submit" onclick="insertComment()">등록</button>
+        </div>
+        <hr>
+        댓글창:<br>
+        <br>
+        <div id="comments">
+            <!-- 댓글이 여기에 표시됩니다. -->
+        </div>
+    </div>
+</body>
+
+
+
+<script>
+
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+fetchAllComments();
+// Get the path to the file dynamically
+const fetchfilePath = "./<%= modyB[0].ID %>";
+// Fetch the file at the specified path
+fetch(fetchfilePath)
+    .then(response => {
+        // Check if the response is successful
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // Return the response text
+        console.log("response:",response);
+        return response.text();
+    })
+    .then(data => {
+        // Set the file content to the value of the fileContent element
+        console.log("data::")
+        document.getElementById('fileContent').value = data;
+        
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+    
+
+    function fetchAllComments() {
+fetch('/board/getAllComments') // Modify the URL if needed
+.then(response => response.json())
+.then(comments => {
+  console.log("comments:",comments)
+    var commentsHTML = '';
+    comments.forEach(comment => {
+        commentsHTML += `
+            <div class="comment">
+                <p><strong>User ID:</strong> ${comment.USER_ID}</p>
+                <p><strong>Team:</strong> ${comment.TEAM}</p>
+                <p><strong>Comment:</strong> ${comment.COMMENTCONTENT}</p>
+                </div>`;
+    });
+    document.getElementById('comments').innerHTML = commentsHTML;
+})
+.catch(error => {
+    console.error('Error fetching comments:', error);
+});
+
+}
+});
+</script>
+
+
+<script>
+    // document.getElementById('fileInput').addEventListener("DOMContentLoaded", function(event) {
+    //   const file = event.target.files[0];
+    // //   console.log("file:",file)
+    //   if (file) {
+    //     const reader = new FileReader();
+        
+    //     reader.onload = function(e) {
+    //       document.getElementById('fileContent').value = e.target.result;
+    //       const fileContent = e.target.result;
+    //       console.log("fileContent::::",fileContent);
+         
+    //     };
+        
+    //     reader.readAsText(file);
+    //   }
+    // });
+</script>
+
+
+
+

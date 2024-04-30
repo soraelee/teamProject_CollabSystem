@@ -1,0 +1,53 @@
+<link href="/static/css/addCod.css" rel="stylesheet">
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="wrap" style="width: 600px; margin: 0 auto;">
+    <h1>코드 추가 페이지</h1>
+        <form  id="addCode">
+            <div id="uploadForm" >
+                <div style="display: flex; margin-top: 10px;">
+                    <input name="USER_ID" placeholder="아이디(user_id)" type="text" style="height: 40px; font-size: 15; width: 285px;margin-left: 14.5px;">
+                    <input name="TEAM" placeholder="팀(team)" type="text" style="height: 40px; font-size: 15; width: 285px;" >
+                </div>
+            
+                <input name="CONTENT" placeholder="콘텐츠(content)" type="text" style="height: 40px; font-size: 15; width: 95%;">
+                <input name="TITLE" placeholder="제목(title)" type="text" style="height: 40px; font-size: 15; width: 95%;">
+                    <div class="insert">
+                        <input name="FILE_NAME" id="fileInput" type="file" style="height: 40px; font-size: 15; width:95%;border: 1px solid black;">
+            
+                    </div>
+                <textarea id="fileContent" style="width: 95%; height: 400px; resize: none; font-size: 20px;"></textarea>
+                <input type="hidden" name="LINE_COUNT" id="lineCount">
+
+                <button type="submit"style="margin: 10px;">저장</button>
+                <input type="button" onclick="board_code()"value="취 소">
+            </div> 
+        </form>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+    //   console.log("file:",file)
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          document.getElementById('fileContent').value = e.target.result;
+          const fileContent = e.target.result;
+
+          const lineCount = fileContent.split('\n').length;
+                document.getElementById('lineCount').value = lineCount; // Set line count as the value of the hidden input field
+
+          //console.log("lineCount:",lineCount);
+        };
+        
+        reader.readAsText(file);
+      }
+    });
+</script>

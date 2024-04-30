@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>게시판</title>
+	<!-- 이곳에 다른 CSS 파일들 또는 CDN을 포함시킬 수 있습니다. -->
+	<style>
+		body {
+			font-family: 'Nunito', sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f4f4f4;
+		}
+
+		.editor-container {
+			width: 80%;
+			margin: 20px auto;
+			background: #fff;
+			padding: 20px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+	</style>
+</head>
+
+<body>
+	
+	<div class="editor-container">
+		<h1 style="text-align: center">글쓰기</h1>
+		<form id="writeformAc" method="post" enctype="multipart/form-data">
+			<b>작성자</b><br>
+			<input type="text" name="id" value="<%= data %>" readonly />
+			<hr>
+			<b>제목</b> <br> <input type="text" size="50" name="title" required/>
+			<hr>
+			<b>내용</b> <br>
+
+			<textarea id="board_content" name="content"></textarea>
+			<div id="fileInputs">
+				
+			</div>
+			<label id="filestatus">선택된 파일이 없습니다.</label><br>
+			<button type="button" onclick="board_FileInput()" id="addButton">첨부파일추가</button>
+			
+			<button type="submit">게시글 등록</button>
+			<button type="button" onclick="board()" >취소</button>
+		</form>
+	</div>
+
+
+	<script src="../../../static/ckeditor5-build-classic/build/ckeditor.js"></script>
+
+</body>
+
+</html>

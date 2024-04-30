@@ -1,0 +1,47 @@
+<span>
+    <input value="<%= projcetname.rows[0].PROJCETNAME %>" readonly type="text" style="height: 40px; font-size: 15; width: 600px;">
+</span>
+
+
+<form action="/file/upload" method="post" enctype="multipart/form-data">
+<input value="<%= projcetname.rows[0].CODENAME %>" readonly type="text" style="height: 40px; font-size: 15; width: 600px;">
+<input value="<%= projcetname.rows[0].CODEEXPLATION %>" readonly type="text" style="height: 40px; font-size: 15; width: 600px;">
+<% fDonw.forEach(data =>{
+  <a href="/board/download"><%= data %></a>
+}) %><input type="file" id="fileInput"><!--파일 넣기-->>
+
+<textarea id="testarea" style="width: 600px; height: 400px; resize: none;font-size: 20px;"></textarea>
+<input style="margin-left: 10px;" type="button" 
+onclick="mod(`<%=projcetname.rows[0].PROJCETNAME%>`)" value="수 정">
+</form>
+<span style="margin: 10PX;"></span>
+<input type="button" onclick="deletePN()" value="삭 제"> 
+
+
+<script>
+    function deletePN(PROJCETNAME){
+        location.href=`/board/delete/`
+    }
+    function mod(PROJCETNAME){
+        console.log("PROJCETNAMEMOD",PROJCETNAME)
+        location.href=`/board/modify_form/${PROJCETNAME}`;
+    }
+</script>
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const textarea = document.getElementById('textarea');
+  
+    fileInput.addEventListener('change', function() {
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = function(event) {
+        const contents = event.target.result;
+        textarea.value = contents; // 파일 내용을 textarea에 할당
+      };
+  
+      reader.readAsText(file);
+    });
+</script>
+  

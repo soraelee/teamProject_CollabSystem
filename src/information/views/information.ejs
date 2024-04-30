@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            /* max-width: 600px; */
+            /* margin: 50px auto; */
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* align-items: center; */
+            align-content: center;
+            
+        }
+
+        /* h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        } */
+        table {
+            width: 50%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            color: black;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tbody tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        #modal_wrap {
+            display: none;
+            position: fixed;
+            z-index: 9;
+            margin: 0 auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        #first {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            align-content: center;
+        }
+        /* form { max-width: 500px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }  */
+        .input_wrap { margin-bottom: 20px;padding: 5px; } 
+        .input_list { display: flex; align-items: center; margin-bottom: 10px; } 
+        .input_list input[type="text"] { padding:0 10px; height: 45px; border: 1px solid #ddd; border-radius: 4px; flex-grow: 1; } 
+        .input_list input[type="date"] { margin-left: 6px; padding:0 10px; height: 45px; border: 1px solid #ddd; border-radius: 4px; flex-grow: 1; } 
+        .remove_field { display: flex; align-items: center; height: 45px; margin-left: 6px; padding:0 15px; background: #ff4d4d; border-radius:4px; color: #fff; cursor: pointer; text-decoration: none; } 
+        .remove_field:hover { background: #ff3333; } 
+    </style>
+
+    <script src="../../../static/js/userInfo.js"></script>
+    <script>
+        const wrapper = $('.input_wrap'); // 입력 필드를 포함하는 컨테이너 선택
+        const addButton = $('.add_field'); // 추가 버튼 선택
+        const date = new Date().toISOString().substring(0, 10);
+        if (document.getElementById('new_made_date') !== null) {
+            document.getElementById('new_made_date').value = new Date().toISOString().substring(0, 10);
+        }
+        // '추가하기' 버튼 클릭 시 이벤트
+        addButton.on('click', (function (e) {
+            e.preventDefault(); // 페이지 리로드 방지
+
+            // 새 입력 필드 추가
+            wrapper.append(`
+                    <div class="input_list">
+                        <input type="text" hidden value="" name="id">
+                        <input type="text" name="team_name" placeholder="입력해주세요." />
+                        <input type="date" name="made_date" class="new_made_date" value="${date}" readonly/>
+                        <a href="" class="remove_field">삭제</a>
+                        </div>
+                    `);
+
+            // }
+        }));
+        // '삭제' 링크 클릭 시 이벤트
+        wrapper.on('click', '.remove_field', function (e) {
+            e.preventDefault(); // 페이지 리로드 방지
+            $(this).parent('.input_list').remove(); // 필드 제거
+            fieldCount--; // 필드 수 감소
+        });
+    </script>
+</head>
+
+<body>
+    <!-- <h1>Information</h1> -->
+
+    <% if (!userPosition || !userPosition.result || !userPosition.result.position) {%>
+        세션 만료
+        <script>
+            alert("세션이 만료되었습니다")
+            location.href='/auth/loginForm'
+        </script>
+    <%}else{%>
+        <% if (userPosition.result.position=='PM') {%>
+    
+            <div id="modal_wrap">
+                <div id="first">
+                    <h3>팀 정보 생성</h3><br><br>
+                    <form id="teamMaker">
+                        <div class="input_wrap">
+    
+                                    <% if (team.length> 0) {%>
+                                        <div class="input_list">
+                                                <input type="text" hidden value="<%= team[0].ID%>" name="id">
+                                                <input type="text" name="team_name" value="<%= team[0].TEAM_NAME%>" />
+                                                <input type="date" name="made_date" value="<%= team[0].MADE_DATE%>"
+                                                    readonly /><br>
+                                                </div>
+                                        <% if (team.length> 1) {%>
+                                            <% for(let i=1 ; i < team.length ; i++) {%>
+                                                        <div class="input_list">
+                                                        <input type="text" hidden value="<%= team[i].ID%>" name="id">
+                                                        <input type="text" name="team_name"
+                                                            value="<%= team[i].TEAM_NAME%>" />
+                                                        <input type="date" name="made_date" value="<%= team[i].MADE_DATE%>"
+                                                            readonly />
+                                                        <a href="" class="remove_field">삭제</a>
+                                                    </div>
+                                                <%}%>
+                                                    <%}%>
+                                                        <%}else{%>
+                                                                    <div class="input_list">
+                                                                    <input type="text" hidden value="" name="id">
+                                                                    <input type="text" name="team_name" />
+                                                                    <input type="date" name="made_date"
+                                                                        id="new_made_date" value="" readonly />
+                                                                    </div>
+                                                            <%}%>
+                                                </div>
+    
+    
+                        <button class="add_field">팀 추가</button>
+                        <button type="button" onclick="teamMakeBtn()" id="teamListBtn">생성</button>
+                        <button type="button" onclick="teamMakeForm_hide()">닫기</button>
+                    </form>
+                </div>
+            </div>
+    
+            <div class="container">
+                <form id="teamMdf" style="text-align: center; margin: 0 auto;">
+                    <table style="width: auto;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User ID</th>
+                                <th>User Name</th>
+                                <th>Position</th>
+                                <th>Team</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(function(user) { %>
+                                <tr>
+                                    <td>
+                                        <input type="text" name="origin_team" hidden value="<%= user.TEAM %>">
+                                        <%= user.ID %>
+                                    </td>
+                                    <td>
+                                        <%= user.USER_ID %>
+                                    </td>
+                                    <td>
+                                        <%= user.USER_NAME %>
+                                    </td>
+                                    <td>
+                                        <%= user.POSITION %>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="user_id" hidden value="<%= user.ID %>">
+                                        <select name="teamSelect" class="teamSelector">
+                                            <% if (user.TEAM === null ||user.TEAM === 'None') { %>
+                                                <option value="None" selected>
+                                                    None
+                                                </option>
+                                                
+                                            <% } else { %>
+                                                <option value="None">
+                                                    None
+                                                </option>
+                                            <% } %>
+                                            <% team.forEach((tN)=> { %>
+                                                <% if (tN.TEAM_NAME===user.TEAM) { %>
+                                                        <option value="<%= tN.TEAM_NAME%>" selected>
+                                                            <%= tN.TEAM_NAME%>
+                                                        </option>
+                                                    <% } else { %>
+                                                        <option value="<%= tN.TEAM_NAME%>">
+                                                            <%= tN.TEAM_NAME%>
+                                                        </option>
+                                                    <% } %>
+                                                <% }); %>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                    <button type='button' onclick="teamMakeForm_show()">팀 정보 생성</button>
+                    <button type='button' onclick="submitChanges()">팀 정보 수정</button>
+                </form>
+            </div>
+            <% } else { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Position</th>
+                            <th>Team</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(function(user) { %>
+                            <tr>
+                                <td>
+                                    <%= user.ID %>
+                                </td>
+                                <td>
+                                    <%= user.USER_ID %>
+                                </td>
+                                <td>
+                                    <%= user.USER_NAME %>
+                                </td>
+                                <td>
+                                    <%= user.POSITION %>
+                                </td>
+                                <td>
+                                    <%= user.TEAM %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+                <%}%>
+        
+            <%}%>
+</body>
+
+</html>

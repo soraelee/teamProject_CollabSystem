@@ -1,0 +1,45 @@
+<link href="/static/css/codeF.css" rel="stylesheet">
+<script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+<style>
+    .teamBtn{
+        padding: 10px;
+        border: 1px solid #ddd;
+        min-height: 20px;
+        width: 200px;
+    }
+</style>
+
+
+<div class="wrap" style="width: 600px; margin: 0 auto;">
+    <div style="border: 1px solid #000000;width: 600px;text-align: center;padding-top: 15px;padding-left: 25px;">
+        <div style="display: flex;">
+            <div class="te-box" id="team-list" style="width: 200px;height: 500px;">
+                <h3 style="text-align: center;margin: 30px;">Team List</h3>
+                
+                <% pTeamName.forEach(function(team) { %>
+                    <div><button id="<%= team.TEAM %>" CurrentTeamName="<%=team.Team%>" class="teamBtn" style="margin: 8px;" onclick="codeTitle(this.id)"><%= team.TEAM %></a></div>
+                <% }); %>
+            </div>
+            
+
+            <div class="team-box" id="code-list" style="margin-left:30px;width: 300px;height: 500px;">
+                <!-- a태그 생성 -->
+            </div>
+
+        </div>
+        <div style="margin: 15px;text-align: right; width: 550px; ">
+            
+                <input type="button"onclick="boardAddCode()"style="display:inline-block;" value="추  가" ></input>
+           
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+  
+   
+
+
+</script>

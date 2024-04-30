@@ -1,0 +1,116 @@
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('aaa', 'password1', 'John Doe', 'dev', 'Project A');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('bbb', 'password2', 'Jane Doe', 'dev', 'Project A');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('ccc', 'password3', 'Jake', 'dev', 'Project C');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('ddd', 'password4', 'Alice Smith', 'dev', 'Project A');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('eee', 'password5', 'Bob Johnson', 'dev', 'Project B');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('fff', 'password6', 'Emily Brown', 'dev', 'Project C');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('client1', 'client1Pw', 'Gym', 'client', null);
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('bondal007', '991224', 'Gym', 'dev', 'Project C');
+
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('bondal008', '991224_2', 'Gym2', 'dev', 'Project D');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('bondal009', '991224_3', 'Gym3', 'dev', 'Project E');
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project E', 'bondal009', 'Gym3', 4800, 9, 3);
+
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('ggg', 'password1', 'Michael Lee', 'dev', 'Project A');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('hhh', 'password2', 'Sophia Garcia', 'dev', 'Project A');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('jjj', 'password4', 'Olivia Wilson', 'dev', 'Project B');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('kkk', 'password5', 'William Anderson', 'dev', 'Project B');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('lll', 'password6', 'Isabella Taylor', 'PM', 'Project B');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('mmm', 'password7', 'Ethan Thomas', 'dev', 'Project C');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('nnn', 'password8', 'Ava Hernandez', 'client', 'Project C');
+
+INSERT INTO user_accounts (user_id, user_pw, user_name, position, team)
+VALUES ('ooo', 'password9', 'James Moore', 'PM', 'Project C');
+
+
+-- For Project A
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project A', 'ggg', 'Michael Lee', 4800, 9, 3);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project A', 'hhh', 'Sophia Garcia', 5200, 11, 4);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project A', 'aaa', 'John Doe', 5000, 10, 5);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project A', 'bbb', 'Jane Doe', 3000, 4, 1);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project A', 'ddd', 'Alice Smith', 4800, 8, 2);
+
+-- For Project B
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project B', 'jjj', 'Olivia Wilson', 3600, 5, 1);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project B', 'kkk', 'William Anderson', 3800, 7, 2);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project B', 'eee', 'Bob Johnson', 3900, 6, 2);
+
+-- For Project C
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project C', 'mmm', 'Ethan Thomas', 4200, 6, 2);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project C', 'ccc', 'Jake', 4000, 5, 3);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project C', 'fff', 'Emily Brown', 4100, 4, 2);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project C', 'bondal007', 'Gym', 10000, 9, 3);
+
+INSERT INTO PERFORMANCE (team, user_id, user_name, codeLine, upVote, downVote)
+VALUES ('Project D', 'bondal008', 'Gym2', 4800, 9, 3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

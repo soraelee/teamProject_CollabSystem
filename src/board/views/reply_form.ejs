@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reply Box Example</title>
+<style>
+  .reply-container {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+
+  .reply-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .submit-button {
+    padding: 10px 20px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .submit-button:hover {
+    background-color: #357ae8;
+  }
+</style>
+</head>
+<body>
+
+<div class="reply-container">
+  <form id="replyForm">
+    <input type="text" name="write_group" value="<%= writeNo %>" style="display: none;"/>
+    <input type="text" name="id" value="<%= name%>" style="display: none;"/>
+    <label>작성자:<span name="reply_user"><%= name%></span></label>
+    <textarea class="reply-input" id="replyText" name="replyText" rows="4" placeholder="Write your reply here..."></textarea>
+    <input type="submit" value="답글 작성" class="submit-button">
+    <button type="button" onclick="reply_form_Cencel()">취소</button>
+  </form>
+</div>
+
+</body>
+</html>

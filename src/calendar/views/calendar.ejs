@@ -1,0 +1,51 @@
+<%- include ("./write_form") %>
+  <%- include ("./modify_form") %>
+    <%- include ("./team_selector") %>
+      <!DOCTYPE html>
+      <html lang='en'>
+
+      <head>
+        <meta charset='utf-8' />
+        
+        <link href="/static/css/write.css" rel="stylesheet">
+        <style>
+          .container {
+            width: 100%;
+            /* max-width: 600px; */
+            /* margin: 50px auto; */
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* align-items: center; */
+            align-content: center;
+            
+        }
+        </style>
+        
+      </head>
+
+      <body>
+        <% if (!user_id) {%>
+        <script>
+          alert("세션이 만료되었습니다")
+          location.href='/auth/loginForm'
+        </script>
+          세션 만료
+            
+      <%} else {%>
+          <div id='calendar' class="container"></div>
+          <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+          <script src="
+          https://cdn.jsdelivr.net/npm/@fullcalendar/google-calendar@6.1.11/index.global.min.js
+          "></script>
+            <script src="../../../static/js/calendar_write.js"></script>
+            <script src="../../../static/js/calendar_modify.js"></script>
+            <script src="../../../static/js/calendar_etc.js"></script>
+            <!-- <script src="../../../static/js/fun.js"></script> -->
+            <script src="../../../static/js/a.js"></script>
+    
+      <%} %>
+      </body>
+<!-- asdad -->
+      </html>
