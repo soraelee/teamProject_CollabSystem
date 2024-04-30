@@ -8,7 +8,7 @@ let pList; //개인 스케줄
 var calendarEl = document.getElementById('calendar');
 var calendar = new FullCalendar.Calendar(calendarEl, {
 
-  googleCalendarApiKey: 'AIzaSyDhyvIM8Fz8AX1Gk__ljvjwV3gMZH_NVNA',
+  googleCalendarApiKey: '',
   customButtons: {
     addScheduleBtn: {
       text: "일정 추가하기",
