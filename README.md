@@ -109,7 +109,9 @@
 <h3>팀 정보 수정 기능</h3>
 
 <h4>팀 생성/수정/삭제 기능</h4>
+
 ![image](https://github.com/soraelee/teamProject_CollabSystem/assets/145763590/df054d3f-014d-42af-b62a-4f15a8fad98a)
+
 : dev ,client로 로그인 시 → 사용자에 대한 정보 확인만 가능
 
 ![image](https://github.com/soraelee/teamProject_CollabSystem/assets/145763590/16c2a07d-0b49-422b-8cfb-811fde6776d8)
